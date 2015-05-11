@@ -2,13 +2,9 @@ unit Tool;//instruments
 
 interface
 
-type
-  DICTIONARY = record
-  
-  end;
-  nametype = array[1..10] of char;
+uses
+  Data;
 
-//procedures and functions
 procedure MAKENULL(guys: DICTIONARY);
 procedure INSERT(subject: nametype; guys: DICTIONARY);
 procedure DELETE(subject: nametype; guys: DICTIONARY);
@@ -33,7 +29,7 @@ end;
 
 function MEMBER(subject: nametype; guys: DICTIONARY): boolean;
 begin
-  Result:=true;
+  
 end;
 
 

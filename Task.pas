@@ -1,6 +1,7 @@
 program tuna ( input, output );// Task
 { База данных законодателей (legislator) }
-uses Tool;
+uses
+  Tool, Convert, Data;
 
 var
   command: char; 
@@ -30,19 +31,19 @@ begin
     writeln('Нет данных о ', subject)
 end;{ report }
 
-begin { main program }
+begin{ main program }
   MAKENULL(goodguys);
   MAKENULL(badguys);
   read(command);
   while command <> 'E' do 
   begin
-    readln(legislator); 
+    readline(legislator); 
     if command = 'F' then favor(legislator) 
     else 
     if command = 'U' then unfavor(legislator) 
     else 
-    if command = ' ?' then report(legislator) 
-    else report('Неиэвестная команда');
+    if command = '?' then report(legislator) 
+    else writeln('Неиэвестная команда');
     read(command)
   end
 end.
