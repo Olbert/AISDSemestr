@@ -1,4 +1,4 @@
-program AISD_9;//Отвечает за ввод-вывод
+program AISD_9;//input and output
 
 var
 

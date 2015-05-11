@@ -1,4 +1,4 @@
-program tuna ( input, output );
+program tuna ( input, output );// Task
 { База данных законодателей (legislator) }
 
 type
@@ -32,7 +32,7 @@ begin
     writeln('Нет данных о ', subjcct)
 end;{ report }
 
-begin{ основная программа }
+begin { main program }
   MAKENULL(goodguys);
   MAKENULL(badguys);
   read(command);

@@ -1,4 +1,4 @@
-program AISD_9;//Отвечает за запуск тестов
+program AISD_9;//Testing
 
 var
 
