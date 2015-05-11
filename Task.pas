@@ -1,24 +1,22 @@
 program tuna ( input, output );// Task
 { База данных законодателей (legislator) }
-
-type
-  nametype = array[1..10] of char;
+uses Tool;
 
 var
   command: char; 
   legislator: nametype;
-  goociguys, badgnys: DICTIONARY;
+  goodguys, badguys: DICTIONARY;
 
 procedure favor(friend: nametype );{ заносит имя friend (друг) в список goodguys и вычеркивает из списка badguys } 
 begin
   INSERT(friend, goodguys); 
-  DELETE(friend, baciguys);
+  DELETE(friend, badguys);
 end;{ favor } 
 
 procedure unfavor(foe: nametype);{ заносит имя fое (враг) в список badguys вычеркивает из списка gиodguys}
 begin
   INSERT(foe, badguys); 
-  DELETE(foe, goociguys); 
+  DELETE(foe, goodguys); 
 end;{ unfavor } 
 
 procedure report(subject: nametype );{печать имени subject с соответспзуюшегг характеристикой} 
@@ -29,7 +27,7 @@ begin
   if MEMBER(subject, badguys) then 
     writeln(subject, ' — это враг ')
   else 
-    writeln('Нет данных о ', subjcct)
+    writeln('Нет данных о ', subject)
 end;{ report }
 
 begin { main program }
