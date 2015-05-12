@@ -48,23 +48,30 @@ procedure DELETE(subject: nametype; var guys: DICTIONARY);
 var
   i: integer;
 begin
+i:=1;
   guys.Current := guys.Head;
-  for i := 1 to LenOfName - 1 do
+  while guys.Current <> nil do 
+  begin
     guys.Current := guys.Current^.next[subject[i]];
-  dispose(guys.Current^.next[subject[LenOfName]])
+    inc(i);
+  end;
+  if (i = LenOfName) then dispose(guys.Current^.next[subject[LenOfName]])
 end;
 
 function MEMBER(subject: nametype; guys: DICTIONARY): boolean;
 var
   i: integer;
 begin
-  Result := true;
+i:=1;
+  Result := false;
   guys.Current := guys.Head;
-  for i := 1 to LenOfName do
+  while guys.Current <> nil do 
   begin
-    if (guys.Current^.next[subject[i]] = nil) then Result := false;
     guys.Current := guys.Current^.next[subject[i]];
+    inc(i);
   end;
+  if (i = LenOfName) then Result := true;
+  
 end;
 
 

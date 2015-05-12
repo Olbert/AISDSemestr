@@ -17,7 +17,7 @@ begin
   while i < LenOfName do 
   begin
     read(legislator[i]);
-    if legislator[i]<>0 inc(i);
+    if legislator[i]<>' ' then inc(i);
   end;
   readln(legislator[LenOfName]);
   
