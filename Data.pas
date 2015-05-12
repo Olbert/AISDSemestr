@@ -10,8 +10,9 @@ type
   tRoad = array[1..LenOfName] of boolean;
   
   Cell = record
-    Data: tData;
+    //Data: tData;
     next: array['a'..'z'] of ^Cell;
+    parent:^Cell
   end;
   
   DICTIONARY = record  
