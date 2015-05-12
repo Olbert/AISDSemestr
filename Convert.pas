@@ -13,8 +13,12 @@ procedure readline(var legislator: nametype);
 var
   i: integer;
 begin
-  for i := 1 to LenOfName-1 do
+  i := 1;
+  while i < LenOfName do 
+  begin
     read(legislator[i]);
+    if legislator[i]<>0 inc(i);
+  end;
   readln(legislator[LenOfName]);
   
 end;

@@ -1,7 +1,7 @@
 unit Data;//All Datas
 
 const
-  LenOfName = 10;
+  LenOfName = 3;
 
 type
   

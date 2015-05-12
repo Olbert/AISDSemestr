@@ -5,24 +5,26 @@ interface
 uses
   Data;
 
-procedure MAKENULL(guys: DICTIONARY);
-procedure INSERT(subject: nametype; guys: DICTIONARY);
-procedure DELETE(subject: nametype; guys: DICTIONARY);
+procedure MAKENULL(var guys: DICTIONARY);
+procedure INSERT(subject: nametype; var  guys: DICTIONARY);
+procedure DELETE(subject: nametype; var  guys: DICTIONARY);
 function MEMBER(subject: nametype; guys: DICTIONARY): boolean;
 
 implementation
 
-procedure MAKENULL(guys: DICTIONARY);
+procedure MAKENULL(var guys: DICTIONARY);
 var
   p: pCell;
-  c: char;
 begin
   new(p);
   guys.Head := p;
   guys.Current := p;
 end;
 
-procedure INSERT(subject: nametype; guys: DICTIONARY);
+procedure INSERT(subject: nametype; var guys: DICTIONARY);
+var
+  i: integer;
+  p: pCell;
 begin
   guys.Current := guys.Head;
   for i := 1 to LenOfName do
@@ -31,8 +33,8 @@ begin
     begin
       new(p);
       // p.Data := subject[i];
-      p.parent := guys.Current;
-      guys.Current^.next := p;
+      p^.parent := guys.Current;
+      guys.Current^.next[subject[i]] := p;
       guys.Current := p;
     end
     else 
@@ -42,7 +44,9 @@ begin
   
 end;
 
-procedure DELETE(subject: nametype; guys: DICTIONARY);
+procedure DELETE(subject: nametype; var guys: DICTIONARY);
+var
+  i: integer;
 begin
   guys.Current := guys.Head;
   for i := 1 to LenOfName - 1 do
@@ -51,12 +55,14 @@ begin
 end;
 
 function MEMBER(subject: nametype; guys: DICTIONARY): boolean;
+var
+  i: integer;
 begin
   Result := true;
   guys.Current := guys.Head;
   for i := 1 to LenOfName do
   begin
-    if guys.Current = nil then Result := false;
+    if (guys.Current^.next[subject[i]] = nil) then Result := false;
     guys.Current := guys.Current^.next[subject[i]];
   end;
 end;
