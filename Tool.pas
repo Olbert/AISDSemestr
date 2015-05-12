@@ -6,8 +6,8 @@ uses
   Data;
 
 procedure MAKENULL(var guys: DICTIONARY);
-procedure INSERT(subject: nametype; var  guys: DICTIONARY);
-procedure DELETE(subject: nametype; var  guys: DICTIONARY);
+procedure INSERT(subject: nametype; var guys: DICTIONARY);
+procedure DELETE(subject: nametype; var guys: DICTIONARY);
 function MEMBER(subject: nametype; guys: DICTIONARY): boolean;
 
 implementation
@@ -32,47 +32,42 @@ begin
     if (guys.Current^.next[subject[i]] = nil) then
     begin
       new(p);
-      // p.Data := subject[i];
+    //p.Data := subject[i];
       p^.parent := guys.Current;
       guys.Current^.next[subject[i]] := p;
       guys.Current := p;
     end
     else 
       guys.Current := guys.Current^.next[subject[i]]
-  end;
-  
-  
+  end; 
 end;
 
 procedure DELETE(subject: nametype; var guys: DICTIONARY);
 var
   i: integer;
 begin
-i:=1;
+  i := 1;
   guys.Current := guys.Head;
-  while guys.Current <> nil do 
+ while (guys.Current <> nil) and (i <> LenOfName+1) do 
   begin
     guys.Current := guys.Current^.next[subject[i]];
     inc(i);
   end;
-  if (i = LenOfName) then dispose(guys.Current^.next[subject[LenOfName]])
+  if (i = LenOfName+1) then dispose(guys.Current)
 end;
 
 function MEMBER(subject: nametype; guys: DICTIONARY): boolean;
 var
   i: integer;
 begin
-i:=1;
+  i := 1;
   Result := false;
   guys.Current := guys.Head;
-  while guys.Current <> nil do 
+  while (guys.Current <> nil) and (i <> LenOfName+1) do 
   begin
     guys.Current := guys.Current^.next[subject[i]];
-    inc(i);
+    if(guys.Current<>nil) then inc(i); 
   end;
-  if (i = LenOfName) then Result := true;
-  
+  if (i = LenOfName+1) then Result := true;
 end;
-
-
 end.
