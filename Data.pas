@@ -1,16 +1,24 @@
 unit Data;//All Datas
-const LenOfName = 10;
+
+const
+  LenOfName = 10;
 
 type
-
+  
   nametype = array[1..LenOfName] of char;
   tData = char;
-  tRooad = array[1..LenOfName] of boolean;// а зачем?
-  pTree = ^tTree;
+  tRoad = array[1..LenOfName] of boolean;
   
-  tTree = record
+  Cell = record
     Data: tData;
-    array['a'..'z'] of pTree;
+    next: array['a'..'z'] of ^Cell;
   end;
+  
+  DICTIONARY = record  
+    head, current: ^cell;
+  end;
+  
+  pCell = ^Cell;
+
 
 end.
