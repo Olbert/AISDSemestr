@@ -47,13 +47,13 @@ var
   i: integer;
 begin
   i := 1;
-  guys.Current := guys.Head;
- while (guys.Current <> nil) and (i <> LenOfName+1) do 
+ guys.Current := guys.Head;
+  while (guys.Current^.next[subject[i]] <> nil) and (i <> LenOfName) do 
   begin
     guys.Current := guys.Current^.next[subject[i]];
-    inc(i);
+    inc(i); 
   end;
-  if (i = LenOfName+1) then dispose(guys.Current)
+  if (i = LenOfName) then dispose(guys.Current)
 end;
 
 function MEMBER(subject: nametype; guys: DICTIONARY): boolean;
