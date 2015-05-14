@@ -23,12 +23,12 @@ end;{ unfavor }
 procedure report(subject: nametype );{печать имени subject с соответспзуюшегг характеристикой} 
 begin
   if MEMBER(subject, goodguys) then 
-    writeln(subject, ' — это друг') 
-  else 
+    writeline(subject, true); 
+  //else 
   if MEMBER(subject, badguys) then 
-    writeln(subject, ' — это враг ')
+    writeline(subject, false)
   else 
-    writeln('Нет данных о ', subject)
+    writenope(subject)
 end;{ report }
 
 begin{ main program }
@@ -43,7 +43,7 @@ begin{ main program }
     if command = 'U' then unfavor(legislator) 
     else 
     if command = '?' then report(legislator) 
-    else writeln('Неиэвестная команда');
+    else writeln('Неизвестная команда');
     read(command)
   end
 end.
